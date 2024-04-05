@@ -3,7 +3,7 @@ import Image from "next/image";
 import shevron from "../public/shevron.svg";
 import check from "../public/check.svg";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useOutsideClick from "@/app/hooks/useOutsideClick";
 
 const VALUES = ["draft", "pending", "paid"];
@@ -36,9 +36,9 @@ export default function Filter(
             <div className="flex text-headings items-center font-bold text-[15px] leading-[15px] tracking-[-0.25px]" onClick={() => toggleFilter(!filterOpen)}>
                 <p className="md:mr-[4px]">Filter</p>
                 <span className="hidden md:block">by status</span>
-                <Image src={shevron} alt="menu arrow icon" className="ml-[12px] md:ml-[14px]"/>
+                <Image src={shevron} alt="menu arrow icon" className={cn('ml-[12px] md:ml-[14px]', { "rotate-180": filterOpen })} />
             </div>
-            <ul ref={ref} className={cn(` hidden absolute w-[192px] shadow-custom rounded-[8px] p-[24px] bg-filter top-[35px] left-[-40px]`, {
+            <ul ref={ref} className={cn(`hidden absolute w-[192px] shadow-custom rounded-[8px] p-[24px] bg-filter top-[35px] left-[-40px]`, {
                 "block": filterOpen,
             })}>
                 {
