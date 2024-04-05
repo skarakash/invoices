@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+          custom: "var(--shadow-custom)"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -52,6 +55,12 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        sidebar: "hsl(var(--sidebar))",
+        violet: "hsl(var(--violet))",
+        'violet-light': "hsl(var(--violet-light))",
+        headings: "hsl(var(--headings))",
+        subheadings: "hsl(var(--subheadings))",
+        filter: "hsl(var(--filter))",
       },
       borderRadius: {
         lg: "var(--radius)",
