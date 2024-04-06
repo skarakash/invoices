@@ -4,7 +4,7 @@ import shevron from "../public/shevron.svg";
 import check from "../public/check.svg";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import useOutsideClick from "@/app/hooks/useOutsideClick";
+import useOutsideClick from "@/hooks/useOutsideClick";
 
 const VALUES = ["draft", "pending", "paid"];
 export default function Filter(

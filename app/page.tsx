@@ -5,22 +5,23 @@ import Filter from "@/components/Filter";
 import Image from "next/image";
 import empty from '@/public/empty.svg'
 import { useEffect, useState } from 'react';
+import { Invoice } from '@prisma/client'
+import useSWR from "swr";
+import { formatInvoiceStatus } from "@/utils/untils";
+const fetcher = (url: string) => fetch(url).then(res => res.json())
 
-interface Invoice {
-  id: string
-  status: string
-  paymentDue: string
-  clientName: string
-  total: number
-}
 export default function Home() {
   const [selectedTypes, setSelectedTypes] = useState<string[]>([])
   const [invoices, setInvoices] = useState<Invoice[]>([])
 
+  const { data, error, isLoading } = useSWR('/api/invoices', fetcher)
+  console.log({ data, error, isLoading })
 
   useEffect(() => {
-    console.log(selectedTypes)
-  }, [selectedTypes])
+    if (data) {
+      setInvoices(data)
+    }
+  }, [data])
 
   return (
     <div className="h-screen flex flex-col">
@@ -29,7 +30,7 @@ export default function Home() {
         <div className="flex items-center">
           <div>
             <h1 className="text-headings font-bold leading-[22px] text-[24px] tracking-[-0.75] mb-[7px]">Inovices</h1>
-            {invoices.length == 0 && <p className="text-subheadings font-medium leading-[15px] text-[13px] tracking-[-0.1px]">No invoices</p>}
+             <p className="text-subheadings font-medium leading-[15px] text-[13px] tracking-[-0.1px]">{`${formatInvoiceStatus(invoices)}`}</p>
           </div>
           <div className="ml-auto">
             <Filter
